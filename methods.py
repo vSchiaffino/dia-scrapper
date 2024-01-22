@@ -8,7 +8,8 @@ def scrap_dia_kg(url):
     soup = BeautifulSoup(raw_html, 'html.parser')
     elements = soup.find_all("span", "vtex-product-specifications-1-x-specificationValue vtex-product-specifications-1-x-specificationValue--first vtex-product-specifications-1-x-specificationValue--last")
     if(len(elements) == 0):
-        raise Exception("failed scraping " + url)
+        print("failed scraping " + url)
+        return -1.0
 
     element = elements[0]
     price = element["data-specification-value"]
