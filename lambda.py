@@ -23,9 +23,10 @@ def lambda_call(event, context):
     date_str = armar_date_str()
     canasta = armar_canasta(variantes)
     dynamodb = boto3.resource('dynamodb', region_name='sa-east-1')
-    table = dynamodb.Table("cotizaciones_cedears")
+    table = dynamodb.Table("variacion_canasta")
     table.put_item(
         Item={
+            "id": date_str,
             'date': date_str,
             'total': Decimal(str(total)),
             'canasta': canasta
