@@ -16,7 +16,7 @@ def armar_date_str():
     utc_now = datetime.utcnow()
     utc_offset = timedelta(hours=-3)
     date = utc_now.replace(tzinfo=timezone.utc) + utc_offset
-    date_str = time.strftime("%Y/%m/%d")
+    return time.strftime("%Y/%m/%d")
 
 def lambda_call(event, context):
     variantes, total = obtener_variantes()
