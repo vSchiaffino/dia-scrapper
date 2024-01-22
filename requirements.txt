@@ -6,7 +6,6 @@ certifi==2023.11.17
 charset-normalizer==2.0.12
 idna==3.6
 jmespath==0.10.0
-pkg-resources==0.0.0
 python-dateutil==2.8.2
 requests==2.27.1
 s3transfer==0.5.2
