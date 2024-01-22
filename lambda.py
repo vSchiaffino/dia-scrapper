@@ -1,12 +1,15 @@
+import time
+import boto3
 from datetime import datetime, timedelta, timezone
 from scrap import obtener_variantes
+from decimal import Decimal
 
 def armar_canasta(variantes):
     canasta = {}
     productos = set([variante["producto"] for variante in variantes])
     for producto in productos:
         variantes_producto = [variante for variante in variantes if variante["producto"] == producto]
-        canasta[producto] = round(sum([variante["precio"] for variante in variantes_producto]) / len(variantes_producto), 2)
+        canasta[producto] = Decimal(str(round(sum([variante["precio"] for variante in variantes_producto]) / len(variantes_producto), 2)))
     return canasta
 
 def armar_date_str():
@@ -24,7 +27,7 @@ def lambda_call(event, context):
     table.put_item(
         Item={
             'date': date_str,
-            'total': total,
+            'total': Decimal(str(total)),
             'canasta': canasta
         }
     )
