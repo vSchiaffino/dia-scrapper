@@ -21,6 +21,7 @@ def armar_date_str():
 def lambda_call(event, context):
     variantes, total = obtener_variantes()
     date_str = armar_date_str()
+    print(date_str)
     canasta = armar_canasta(variantes)
     dynamodb = boto3.resource('dynamodb', region_name='sa-east-1')
     table = dynamodb.Table("variacion_canasta")
