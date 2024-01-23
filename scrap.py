@@ -23,7 +23,7 @@ def get_variantes():
 def obtener_precio(variante):
     precio = scrap_dia_kg(variante["link"])
     producto = variante["producto"]
-    print(f"Precio para {producto}: {precio}")
+    # print(f"Precio para {producto}: {precio}")
     return {'producto': producto, 'precio': precio}
 
 
@@ -37,6 +37,7 @@ def obtener_variantes():
     for variante, precio in zip(variantes, precios):
         variante['precio'] = precio['precio']
     print(f"[{total_time} s]")
+    variantes = [variante for variante in variantes if variante["precio"] >= 0]
     return variantes, round(sum([variante["precio"] for variante in variantes]), 2)
 
 
